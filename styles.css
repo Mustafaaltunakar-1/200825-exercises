@@ -1,0 +1,395 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #243049;
+  --text-color: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --accent-color: #38bdf8;
+}
+
+[data-theme="light"] {
+  /* Aydınlık Tema */
+  --bg-color: #f1f5f9;
+  --card-bg: #ffffff;
+  --card-hover: #f8fafc;
+  --text-color: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #cbd5e1;
+  --accent-color: #0284c7;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Inter", sans-serif;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 2.8rem;
+  color: var(--accent-color);
+  letter-spacing: -1px;
+}
+
+header p {
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+.theme-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.theme-btn,
+.tab-btn {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background-color: var(--accent-color);
+  color: #ffffff;
+  border-color: var(--accent-color);
+}
+
+.market-selector {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+#searchInput {
+  width: 100%;
+  max-width: 450px;
+  padding: 14px 25px;
+  border-radius: 30px;
+  border: 2px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.coin-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.coin-card:hover {
+  transform: translateY(-10px);
+  background-color: var(--card-hover);
+}
+
+.coin-logo {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 15px;
+}
+
+.current-price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  margin: 10% auto;
+  padding: 30px;
+  border: 1px solid var(--accent-color);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.modal-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.skeleton-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 25px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0,
+    var(--bg-color) 20%,
+    var(--border-color) 60%,
+    transparent
+  );
+
+  opacity: 0.4;
+  animation: shimmer 2s infinite;
+}
+
+.skeleton-circle {
+  width: 60px;
+  height: 60px;
+  background-color: var(--border-color);
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.skeleton-line {
+  width: 80%;
+  height: 15px;
+  background-color: var(--border-color);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.text-success {
+  color: #22c55e;
+  font-weight: bold;
+}
+.text-danger {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+.chart-container {
+  width: 100%;
+  height: 70px;
+  margin-top: 15px;
+  position: relative;
+}
+
+.coin-card canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Favori Yıldız İkonu */
+.fav-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 10;
+  color: var(--text-muted);
+}
+
+.fav-icon:hover {
+  transform: scale(1.3);
+}
+
+.fav-icon.active {
+  color: #facc15;
+  text-shadow: 0 0 5px rgba(250, 204, 21, 0.5);
+}
+
+.coin-card {
+  position: relative;
+}
+
+.current-price {
+  transition: all 0.4s ease;
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+@keyframes flash-green {
+  0% {
+    background-color: rgba(34, 197, 94, 0.5);
+    color: white;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes flash-red {
+  0% {
+    background-color: rgba(239, 68, 68, 0.5);
+    color: white;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.up-flash {
+  animation: flash-green 1s ease-out;
+}
+.down-flash {
+  animation: flash-red 1s ease-out;
+}
+
+.coin-card.is-favorite {
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+  order: -1;
+}
+
+.fav-icon.active {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+}
+
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .container {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 30px 10px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .market-selector {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tab-btn,
+  .theme-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    flex: 1 1 40%;
+  }
+
+  #searchInput {
+    max-width: 100%;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 20% auto;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .coin-card {
+    padding: 15px;
+  }
+
+  .current-price {
+    font-size: 1.3rem;
+  }
+}

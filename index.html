@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryptoDash | Live Crypto Tracker</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <h1>CryptoDash</h1>
+      <p>Real-time Market Data</p>
+    </header>
+
+    <div class="market-selector">
+      <button class="tab-btn active" onclick="switchMarket('crypto', event)">Cryptocurrencies</button>
+      <button class="tab-btn" onclick="switchMarket('commodities', event)">Commodities</button>
+      <button class="tab-btn" onclick="switchMarket('stocks', event)">Stocks</button>
+      <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search a coin (e.g. Bitcoin)...">
+    </div>
+
+    <div id="coin-list" class="grid-container">
+      <p class="loading-text">Loading market data...</p>
+    </div>
+  </div>
+
+  <div id="coinModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <div id="modal-body">
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
